@@ -1,122 +1,259 @@
-# 💍 Wedding Website
+# Wedding Website - Karla & Vince
 
-A simple, elegant **wedding website** built to share our special day with family and friends.  
-The project features a **static front-end** built from an HTML5UP template and a **C# backend** to manage guest interactions such as RSVP submissions.
+A beautiful, elegant wedding website for announcing our special day on **April 18, 2026**.
 
----
+## 📸 Preview
 
-## 🏠 Table of Contents
-1. [Introduction](#introduction)  
-2. [Features](#features)  
-3. [Tech Stack](#tech-stack)  
-4. [Installation](#installation)  
-5. [Configuration](#configuration)  
-6. [Usage](#usage)  
-7. [File Structure](#file-structure)  
-8. [Deployment](#deployment)  
-9. [Credits](#credits)  
-10. [License](#license)
+The website features:
+- Elegant hero section with save-the-date announcement
+- Interactive navigation to different wedding information sections
+- Romantic design with infinity symbol branding
+- Responsive layout for all devices
 
 ---
 
-## 💌 Introduction
+## 🎨 Features
 
-This website serves as our digital invitation — allowing guests to view wedding details, venue information, and RSVP online.  
-It combines a **responsive static site** design with a lightweight **C# backend** for data handling.
+### Homepage
+- Fixed viewport hero section with "JOIN US AS WE SAY 'I DO'" message
+- Wedding date display: 04.18.2026
+- Clean, elegant typography
+- No scrolling on the homepage - pure single-page design
+
+### Navigation Sections
+
+#### 1. **Our Story / How We Met**
+- Personal narrative about the couple
+- Timeline of relationship milestones
+- First date memories
+- Proposal story
+- Romantic quotes and messages
+
+#### 2. **Wedding Details**
+- **Date & Time:** Complete ceremony and reception schedule
+- **Venue Information:** 
+  - Ceremony and reception locations
+  - Interactive Google Maps buttons for easy navigation
+  - Sample coordinates: `14.6760,121.0437` (customizable)
+- **Dress Code:** 
+  - Visual color palette guide
+  - 8 elegant color circles showing recommended colors
+  - Gradient from dark blue → purple → teal
+  - Colors: Navy (#1a237e), Indigo (#3949ab), Deep Purple (#5e35b1), Purple (#7b1fa2), Royal Purple (#6a1b9a), Purple Violet (#4a148c), Teal (#00897b), Cyan Teal (#00acc1)
+- **Accommodations:** Hotel recommendations and booking info
+- **Transportation & Parking:** Logistics for guests
+- **Schedule of Events:** Detailed timeline of the wedding day
+
+#### 3. **FAQ (Frequently Asked Questions)**
+- Interactive collapsible accordion format
+- Click question to reveal answer
+- Smooth animations
+- Sample questions include:
+  - Dress code details
+  - Plus one policy
+  - Parking information
+  - Accessibility info
+  - Dietary restrictions
+  - Photo policy
+  - Gift registry
+  - Weather expectations
+
+#### 4. **Gallery / Memories**
+- Photo gallery of couple's memories
+- Interactive lightbox functionality
+- Click to open images in full-screen view
+- Navigation arrows for browsing
+- ESC key or X button to close
+- Smooth transitions and animations
+- Grid layout (responsive: 3-4 columns desktop, 2 tablet, 1 mobile)
 
 ---
 
-## ✨ Features
+## 🛠️ Technical Details
 
-- 📅 Event details and schedule  
-- 📍 Venue information with map integration  
-- 💑 Couple introduction and photo gallery  
-- 📨 RSVP form powered by C# backend  
-- 📱 Mobile-friendly responsive design  
-- 💾 Lightweight and easily customizable  
+### Technologies Used
+- HTML5
+- CSS3 (with modern features like backdrop-filter, flexbox, grid)
+- JavaScript (for interactive elements)
+- Responsive design principles
+
+### Key Design Patterns
+
+#### Scrolling Behavior
+- **Homepage:** Fixed at 100vh, no scrolling
+- **Navigation Sections:** Content flows naturally without internal scrollbars
+- **Modal/Overlay:** No nested scrolling - clean, single-scroll experience
+
+#### CSS Architecture
+```css
+/* Homepage - No scroll */
+.hero-section {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sections - No internal scroll */
+.section-content {
+  overflow: visible;
+  /* Content flows naturally */
+}
+```
+
+#### Interactive Elements
+- Color circles with hover effects (scale and shadow)
+- Google Maps buttons with gradient styling
+- FAQ accordion with smooth expand/collapse
+- Gallery lightbox with keyboard navigation
+- Responsive navigation buttons
 
 ---
 
-## 🧰 Tech Stack
+## 🎯 Development Journey
 
-**Frontend:**  
-- HTML5, CSS3, JavaScript  
-- [HTML5 UP Template](https://html5up.net/)  
+### Issues Encountered & Resolved
 
-**Backend:**  
-- C# (ASP.NET or .NET Core)  
-- Optional: SQLite / JSON file for data storage  
+#### Issue 1: Dark Background Overlay
+**Problem:** Background was too dark, making the design feel heavy  
+**Solution:** Reduced opacity to 0.3-0.5 for lighter, more elegant look
+
+#### Issue 2: Navigation Button Labels
+**Problem:** Original labels weren't clear for guests  
+**Solution:** Renamed for clarity:
+- INTRO → OUR STORY / HOW WE MET
+- WORK → WEDDING DETAILS
+- ABOUT → FAQ (changed from MEET THE COUPLE)
+- CONTACT → RSVP / GET IN TOUCH
+- ELEMENTS → GALLERY / MEMORIES
+
+#### Issue 3: Homepage Scrolling
+**Problem:** Homepage became scrollable when it should be fixed  
+**Solution:** Applied `height: 100vh` and `overflow: hidden` to hero section
+
+#### Issue 4: Section Scrolling Confusion
+**Problem:** Double scrollbars (both page and modal had scroll)  
+**Solution:** Removed `overflow-y: auto` from section content, allowing natural flow
 
 ---
 
-## ⚙️ Installation
+## 📝 Customization Guide
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/wedding-website.git
-   cd wedding-website
+### Update Wedding Details
+
+1. **Date & Time:**
+   ```html
+   <p>Saturday, April 18, 2026</p>
+   <p>Ceremony: [Your Time]</p>
    ```
 
-2. **Open the project**
-   - Open the solution file (`.sln`) in **Visual Studio** or **VS Code**.  
-
-3. **Run the backend**
-   ```bash
-   dotnet run
+2. **Venue Addresses:**
+   ```html
+   <p class="venue-name">[Your Venue Name]</p>
+   <p class="venue-address">[Your Full Address]</p>
    ```
 
-4. **Open in browser**
-   Visit `http://localhost:5000` (or the port shown in your terminal).
+3. **Google Maps Coordinates:**
+   ```html
+   <a href="https://www.google.com/maps?q=[LATITUDE],[LONGITUDE]">
+   ```
+   Replace with your actual venue coordinates
+
+4. **Dress Code Colors:**
+   Modify the color circles in CSS:
+   ```html
+   <div class="color-circle" style="background-color: #YOUR_COLOR;"></div>
+   ```
+
+### Update Content
+
+- **Our Story:** Replace placeholder text with your actual love story
+- **FAQ Answers:** Customize all FAQ responses to match your wedding details
+- **Gallery Images:** Replace sample images with your own photos in `/assets` folder
 
 ---
 
-## 🔧 Configuration
+## 🚀 Setup & Deployment
 
-- Update your **wedding details** (names, date, venue, etc.) inside the main `index.html`.  
-- Configure backend settings (e.g., email or storage options) in `appsettings.json`.  
-- Replace placeholder images and text in `/assets/img` and `/content`.  
+### Local Development
+1. Clone the repository
+2. Open `index.html` in a web browser
+3. No build process required - pure HTML/CSS/JS
 
----
-
-## 🚀 Usage
-
-- **Development mode:** Edit HTML/CSS and C# files directly, then refresh your browser.  
-- **Production build:** Publish using Visual Studio or `dotnet publish`.  
-- Deploy to your preferred hosting provider (Azure, Netlify, or GitHub Pages for static parts).
-
----
-
-## 📁 File Structure
-
+### File Structure
 ```
 wedding-website/
-├── wwwroot/
-│   ├── assets/
-│   ├── css/
-│   ├── js/
-│   └── index.html
-├── Controllers/
-│   └── RsvpController.cs
-├── Models/
-│   └── Guest.cs
-├── appsettings.json
-├── Program.cs
-├── Startup.cs
+├── index.html
+├── styles.css
+├── script.js
+├── assets/
+│   ├── images/
+│   └── fonts/
 └── README.md
 ```
 
+### Browser Support
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
 ---
 
-## 💖 Credits
+## 🎨 Design Philosophy
 
-- **Template:** [HTML5 UP](https://html5up.net/) — beautiful, free, and fully responsive templates.  
-- **Backend:** Custom C# logic by *[Your Name]*  
-- **Inspiration & Support:** Our amazing family and friends 💕
+- **Elegance:** Clean, sophisticated design with romantic elements
+- **Simplicity:** Easy navigation and clear information hierarchy
+- **Responsiveness:** Beautiful experience on all devices
+- **Performance:** Optimized images and smooth animations
+- **Accessibility:** Semantic HTML and keyboard navigation support
 
 ---
 
-## 🪪 License
+## 📱 Responsive Design
 
-This project is for **personal use**.  
-Template © [HTML5 UP](https://html5up.net/) — used under [Creative Commons Attribution 3.0 License](https://html5up.net/license).  
-You may freely modify and host your version for personal wedding use.
+- **Desktop:** Full layout with 3-4 column gallery grid
+- **Tablet:** 2 column gallery grid, optimized spacing
+- **Mobile:** Single column layout, full-width buttons, touch-friendly interactions
+
+---
+
+## 🔧 Maintenance Notes
+
+### Known Limitations
+- No localStorage/sessionStorage (not supported in artifact environment)
+- All state management uses in-memory JavaScript variables
+- Images should be optimized for web before upload
+
+### Future Enhancements (Optional)
+- [ ] Add RSVP form with backend integration
+- [ ] Integrate with wedding registry APIs
+- [ ] Add countdown timer to wedding date
+- [ ] Implement guest photo upload feature
+- [ ] Add music player for ceremony songs
+- [ ] Create admin panel for managing RSVPs
+
+---
+
+## 👥 Credits
+
+**Couple:** Karla & Vince  
+**Wedding Date:** April 18, 2026  
+**Design:** Custom elegant wedding theme  
+**Development:** Built with love and attention to detail
+
+---
+
+## 📄 License
+
+This is a personal wedding website. All rights reserved.
+
+---
+
+## 💝 Special Thanks
+
+To all our family and friends who will join us on our special day. Your love and support mean the world to us!
+
+---
+
+**"JOIN US AS WE SAY 'I DO'"**  
+*April 18, 2026*
