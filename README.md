@@ -1,4 +1,4 @@
-# Wedding Website - Karla & Vince
+# Wedding Website - Dominic & Karla
 
 A beautiful, elegant wedding website for announcing our special day on **April 18, 2026**.
 
@@ -13,14 +13,6 @@ The website features:
 ---
 
 ## 🎨 Features
-
-### Homepage
-- Fixed viewport hero section with "JOIN US AS WE SAY 'I DO'" message
-- Wedding date display: 04.18.2026
-- Clean, elegant typography
-- No scrolling on the homepage - pure single-page design
-
-### Navigation Sections
 
 #### 1. **Our Story / How We Met**
 - Personal narrative about the couple
@@ -79,61 +71,12 @@ The website features:
 
 ### Key Design Patterns
 
-#### Scrolling Behavior
-- **Homepage:** Fixed at 100vh, no scrolling
-- **Navigation Sections:** Content flows naturally without internal scrollbars
-- **Modal/Overlay:** No nested scrolling - clean, single-scroll experience
-
-#### CSS Architecture
-```css
-/* Homepage - No scroll */
-.hero-section {
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* Sections - No internal scroll */
-.section-content {
-  overflow: visible;
-  /* Content flows naturally */
-}
-```
-
 #### Interactive Elements
 - Color circles with hover effects (scale and shadow)
 - Google Maps buttons with gradient styling
 - FAQ accordion with smooth expand/collapse
 - Gallery lightbox with keyboard navigation
 - Responsive navigation buttons
-
----
-
-## 🎯 Development Journey
-
-### Issues Encountered & Resolved
-
-#### Issue 1: Dark Background Overlay
-**Problem:** Background was too dark, making the design feel heavy  
-**Solution:** Reduced opacity to 0.3-0.5 for lighter, more elegant look
-
-#### Issue 2: Navigation Button Labels
-**Problem:** Original labels weren't clear for guests  
-**Solution:** Renamed for clarity:
-- INTRO → OUR STORY / HOW WE MET
-- WORK → WEDDING DETAILS
-- ABOUT → FAQ (changed from MEET THE COUPLE)
-- CONTACT → RSVP / GET IN TOUCH
-- ELEMENTS → GALLERY / MEMORIES
-
-#### Issue 3: Homepage Scrolling
-**Problem:** Homepage became scrollable when it should be fixed  
-**Solution:** Applied `height: 100vh` and `overflow: hidden` to hero section
-
-#### Issue 4: Section Scrolling Confusion
-**Problem:** Double scrollbars (both page and modal had scroll)  
-**Solution:** Removed `overflow-y: auto` from section content, allowing natural flow
-
----
 
 ## 📝 Customization Guide
 
@@ -175,18 +118,28 @@ The website features:
 
 ### Local Development
 1. Clone the repository
-2. Open `index.html` in a web browser
+2. Go to docs and open `index.html` in a web browser or you can also run this in visual studio.(files in docs folder is copy of wwwroot/assets and View/Home/Index.cshtml)
 3. No build process required - pure HTML/CSS/JS
 
 ### File Structure
 ```
-wedding-website/
-├── index.html
-├── styles.css
-├── script.js
-├── assets/
-│   ├── images/
-│   └── fonts/
+weddingsite/
+├── docs
+│   ├── assets/
+│   │   ├── css/
+│   │   └── js/
+│   │   └── sass/
+│   │   └── webfonts/
+│   │   └──index.html
+├── wwwroot
+│   ├── assets/
+│   │   ├── css/
+│   │   └── js/
+│   │   └── sass/
+│   │   └── webfonts/
+├── View
+│   ├── Home/
+│   │   ├── Index.cshtml/
 └── README.md
 ```
 
@@ -236,7 +189,7 @@ wedding-website/
 
 ## 👥 Credits
 
-**Couple:** Karla & Vince  
+**Couple:** Dominic & Karla  
 **Wedding Date:** April 18, 2026  
 **Design:** Custom elegant wedding theme  
 **Development:** Built with love and attention to detail
