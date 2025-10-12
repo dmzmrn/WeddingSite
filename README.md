@@ -111,15 +111,19 @@ The website features:
 - **Our Story:** Replace placeholder text with your actual love story
 - **FAQ Answers:** Customize all FAQ responses to match your wedding details
 - **Gallery Images:** Replace sample images with your own photos in `/assets` folder
-
+  
 ---
 
 ## 🚀 Setup & Deployment
 
 ### Local Development
 1. Clone the repository
-2. Go to docs and open `index.html` in a web browser or you can also run this in visual studio.(files in docs folder is copy of wwwroot/assets and View/Home/Index.cshtml)
-3. No build process required - pure HTML/CSS/JS
+    ```bash
+   git clone https://github.com/dmzmrn/WeddingSite.git
+   cd WeddingSite
+   ```
+3. Go to docs and open `index.html` in a web browser or you can also run this in visual studio.(files in docs folder is copy of wwwroot/assets and View/Home/Index.cshtml)
+4. No build process required - pure HTML/CSS/JS
 
 ### File Structure
 ```
