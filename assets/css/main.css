@@ -650,7 +650,7 @@ input, select, textarea {
 		.image:before {
 			pointer-events: none;
 			background-image: url("../../images/overlay.png");
-			background-color: rgba(19, 21, 25, 0.5);
+			background-color: rgba(19, 21, 25, 0.404);
 			border-radius: 4px;
 			content: '';
 			display: block;
@@ -1143,7 +1143,7 @@ input, select, textarea {
 			-webkit-transition-delay: 0.75s;
 			-ms-transition-delay: 0.75s;
 			transition-delay: 0.75s;
-			background-image: linear-gradient(to top, rgba(72, 169, 199, 0.3), rgba(19, 23, 25, 0.3)), url("../../images/overlay.png");
+			background-image: linear-gradient(to top, rgba(79, 142, 161, 0.199), rgba(104, 97, 104, 0.644)), url("../../images/overlay.png");
 			background-size: auto,
 256px 256px;
 			background-position: center,
@@ -1258,10 +1258,11 @@ input, select, textarea {
 		-webkit-transition: -webkit-transform 0.325s ease-in-out, -webkit-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
 		-ms-transition: -ms-transform 0.325s ease-in-out, -ms-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
 		transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
-		background-image: -moz-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
+		/*background-image: -moz-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
 		background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
 		background-image: -ms-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
-		background-image: radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
+		background-image: radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%); */
+		background-image: none;
 		max-width: 100%;
 		text-align: center;
 	}
@@ -1550,7 +1551,7 @@ input, select, textarea {
 			position: relative;
 			width: 40rem;
 			max-width: 100%;
-			background-color: rgba(27, 31, 34, 0.85);
+			background-color: rgba(27, 31, 34, 0.164);
 			border-radius: 4px;
 			opacity: 0;
 		}
@@ -1919,19 +1920,19 @@ input, select, textarea {
 	align-items: center;
 	gap: 0.5rem;
 	padding: 0.75rem 1.5rem;
-	background: linear-gradient(135deg, #4285f4, #34a853);
+	background: linear-gradient(135deg, #42caf463, #a8349948);
 	color: white;
 	text-decoration: none;
 	border-radius: 8px;
 	font-weight: 600;
 	transition: all 0.3s ease;
-	box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+	box-shadow: 0 4px 12px rgba(66, 134, 244, 0.349);
 }
 
 .maps-button:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 6px 20px rgba(66, 133, 244, 0.5);
-	background: linear-gradient(135deg, #3367d6, #2d8e47);
+	background: linear-gradient(135deg, #42caf4fa, #a83499b0);
 }
 
 .map-icon {
