@@ -121,10 +121,31 @@
 				<!-- Color Palette -->
 				<div class="color-palette">
 					<p class="palette-label"><i class="fa-solid fa-palette"></i> Our Wedding Colors</p>
+					<p class="palette-instruction"><b>Click a color to see acceptable shades</b></p>
 					<div class="color-circles">
-						<div class="color-circle" style="background-color: #a19c9c;" title="Grey">Grey</div>
-						<div class="color-circle" style="background-color: #e49be44d;" title="Lilac"></div>
-						<div class="color-circle" style="background-color: #8C9DAD;" title="Dusty Blue"></div>
+						<div class="color-circle" data-color="#a19c9c" data-name="Grey" style="background-color: #a19c9c;" title="Grey"></div>
+						<div class="color-circle" data-color="#d4a5d4" data-name="Lilac" style="background-color: #d4a5d4;" title="Lilac"></div>
+						<div class="color-circle" data-color="#8C9DAD" data-name="Dusty Blue" style="background-color: #8C9DAD;" title="Dusty Blue"></div>
+					</div>
+					
+					<!-- Color Range Popup -->
+					<div class="color-range-popup" id="colorRangePopup">
+						<div class="color-range-header">
+							<span class="color-range-title" id="colorRangeTitle">Grey</span>
+							<span class="color-range-close" id="colorRangeClose"><i class="fa-solid fa-xmark"></i></span>
+						</div>
+						<p class="color-range-subtitle">Drag slider to see acceptable shades</p>
+						<div class="color-slider-container">
+							<div class="color-range-bar" id="colorRangeBar"></div>
+							<input type="range" min="0" max="100" value="0" class="color-slider" id="colorSlider">
+						</div>
+						<div class="color-range-labels">
+							<span>Original</span>
+							<span>Lighter shades OK</span>
+						</div>
+						<div class="color-hex-display">
+							<span id="colorHexValue">#A19C9C</span>
+						</div>
 					</div>
 				</div>
 				<h3><i class="fa-solid fa-timeline"></i> Event Itinerary</h3>
@@ -418,7 +439,9 @@
 
 		<!-- Footer -->
 		<footer id="footer">
-			<p class="copyright">&copy; Dominic & Karla 2026. Made with love for our special day.</p>
+			<p class="copyright typing-text">
+				<span id="typingFooter"></span><span class="typing-cursor">|</span>
+			</p>
 		</footer>
 
 	</div>
@@ -433,6 +456,8 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/timeline-animation.js"></script>
+	<script src="assets/js/color-picker.js"></script>
+	<script src="assets/js/typing-footer.js"></script>
 	<script>
 			document.getElementById('contactForm').addEventListener('submit', async function(e) {
 			e.preventDefault();
