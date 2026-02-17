@@ -115,39 +115,132 @@
 				</div>
 				
 				<h3><i class="fa-solid fa-shirt"></i> Dress Code</h3>
-				<p>We kindly request <strong>semi-formal</strong> attire.<br>
-				<em>Please avoid wearing white.</em></p>
-				
-				<!-- Color Palette -->
-				<div class="color-palette">
-					<p class="palette-label"><i class="fa-solid fa-palette"></i> Our Wedding Colors</p>
-					<p class="palette-instruction"><b>Click a color to see acceptable shades</b></p>
-					<div class="color-circles">
-						<div class="color-circle" data-color="#a19c9c" data-name="Grey" style="background-color: #a19c9c;" title="Grey"></div>
-						<div class="color-circle" data-color="#d4a5d4" data-name="Lilac" style="background-color: #d4a5d4;" title="Lilac"></div>
-						<div class="color-circle" data-color="#8C9DAD" data-name="Dusty Blue" style="background-color: #8C9DAD;" title="Dusty Blue"></div>
-					</div>
+
+				<!-- For Guests -->
+				<div class="dress-code-section">
+					<h4><i class="fa-solid fa-users"></i> For Our Guests</h4>
+					<p>We kindly request <strong>semi-formal</strong> attire.<br>
+					<em>Please avoid wearing white.</em></p>
 					
-					<!-- Color Range Popup -->
-					<div class="color-range-popup" id="colorRangePopup">
-						<div class="color-range-header">
-							<span class="color-range-title" id="colorRangeTitle">Grey</span>
-							<span class="color-range-close" id="colorRangeClose"><i class="fa-solid fa-xmark"></i></span>
+					<div class="color-palette">
+						<p class="palette-info">Feel free to wear any of the colors below or their lighter shades.</p>
+						<p class="palette-instruction"><i class="fa-solid fa-hand-pointer"></i> <b>Click a color to see acceptable shades</b></p>
+						<div class="color-circles">
+
+							<div class="color-circle-wrapper">
+								<div class="color-circle" data-color="#967259" data-name="Mocha" style="background-color: #967259;" title="Mocha"></div>
+								<span class="color-name">Mocha</span>
+							</div>
+
+							<div class="color-circle-wrapper">
+								<div class="color-circle" data-color="#8C9DAD" data-name="Dusty Blue" style="background-color: #8C9DAD;" title="Dusty Blue"></div>
+								<span class="color-name">Dusty Blue</span>
+							</div>
+
+							<div class="color-circle-wrapper">
+								<div class="color-circle" data-color="#a19c9c" data-name="Grey" style="background-color: #a19c9c;" title="Grey"></div>
+								<span class="color-name">Grey</span>
+							</div>
+							
+							<div class="color-circle-wrapper">
+								<div class="color-circle" data-color="#d4a5d4" data-name="Lilac" style="background-color: #d4a5d4;" title="Lilac"></div>
+								<span class="color-name">Lilac</span>
+							</div>
+
+
 						</div>
-						<p class="color-range-subtitle">Drag slider to see acceptable shades</p>
-						<div class="color-slider-container">
-							<div class="color-range-bar" id="colorRangeBar"></div>
-							<input type="range" min="0" max="100" value="0" class="color-slider" id="colorSlider">
-						</div>
-						<div class="color-range-labels">
-							<span>Original</span>
-							<span>Lighter shades OK</span>
-						</div>
-						<div class="color-hex-display">
-							<span id="colorHexValue">#A19C9C</span>
+						
+						<!-- Color Range Popup -->
+						<div class="color-range-popup" id="colorRangePopup">
+							<div class="color-range-header">
+								<span class="color-range-title" id="colorRangeTitle">Grey</span>
+								<span class="color-range-close" id="colorRangeClose"><i class="fa-solid fa-xmark"></i></span>
+							</div>
+							<p class="color-range-subtitle">Drag slider to see acceptable shades</p>
+							<div class="color-slider-container">
+								<div class="color-range-bar" id="colorRangeBar"></div>
+								<input type="range" min="0" max="100" value="0" class="color-slider" id="colorSlider">
+							</div>
+							<div class="color-range-labels">
+								<span>Original</span>
+								<span>Lighter shades OK</span>
+							</div>
+							<div class="color-hex-display">
+								<span id="colorHexValue">#A19C9C</span>
+							</div>
 						</div>
 					</div>
 				</div>
+
+				<!-- For Entourage -->
+				<div class="dress-code-section entourage-section">
+					<h4><i class="fa-solid fa-user-group"></i> For Our Entourage</h4>
+					<p class="entourage-notice"><i class="fa-solid fa-circle-exclamation"></i> Please wear only the <strong>exact colors</strong> assigned to your role.</p>
+					
+					<div class="entourage-colors">
+
+						<!-- Parents -->
+						<div class="entourage-role">
+							<h5>Parents</h5>
+							<div class="entourage-color-display">
+
+								<div class="color-item">
+									<div class="entourage-color" style="background-color: #967259;"></div>
+									<span>Mocha <small>Dress</small></span>
+								</div>
+
+								<div class="color-item">
+									<div class="entourage-color" style="background-color: #000000;"></div>
+									<span>Black <small>Coat w/ Mocha Tie</small></span>
+								</div>
+							</div>
+						</div>		
+
+						<!-- Principal Sponsors -->
+						<div class="entourage-role">
+							<h5>Principal Sponsors (Ninang/Ninong)</h5>
+							<div class="entourage-color-display">
+								
+								<div class="color-item">
+									<div class="entourage-color" style="background-color: #8C9DAD;"></div>
+									<span>Dusty Blue <small>Dress</small></span>
+								</div>
+								<div class="color-item">
+									<div class="entourage-color" style="background-color: #000000;"></div>
+									<span>Black <small>Coat w/ Dusty Blue Tie</small></span>
+								</div>
+								
+							</div>
+						</div>
+						
+						<!-- Groomsmen -->
+						<div class="entourage-role">
+							<h5>Groomsmen</h5>
+							<div class="entourage-color-display">
+
+								<div class="color-item">
+									<div class="entourage-color" style="background-color: #a19c9c;"></div>
+									<span>Grey <small>Coat w/ Lilac Tie</small></span>
+								</div>
+
+							</div>
+						</div>
+						
+						<!-- Bridesmaids -->
+						<div class="entourage-role">
+							<h5>Bridesmaids</h5>
+							<div class="entourage-color-display">
+
+								<div class="color-item">
+									<div class="entourage-color" style="background-color: #d4a5d4;"></div>
+									<span>Lilac <small>Dress</small></span>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<h3><i class="fa-solid fa-timeline"></i> Event Itinerary</h3>
 				<div class="itinerary-container">
 					<div class="timeline">
@@ -306,7 +399,7 @@
 						<span class="faq-icon">+</span>
 					</div>
 					<div class="faq-answer">
-						<p>Please arrive 30 minutes before the ceremony begins at 9:00 AM. This will give you time to find parking, and find your seat.</p>
+						<p>Kindly arrive 30 minutes to 1 hour before the ceremony begins at 9:00 AM. This will allow ample time for parking and seating. Please also consider traffic in Tagaytay.</p>
 					</div>
 				</div>
 				
@@ -316,7 +409,7 @@
 						<span class="faq-icon">+</span>
 					</div>
 					<div class="faq-answer">
-						<p>Yes, parking will be available for both the ceremony and reception at the venue. There is also ample street parking nearby.</p>
+						<p>Yes, parking will be available for both the ceremony and reception at the venue.</p>
 					</div>
 				</div>
 				
@@ -346,7 +439,7 @@
 						<span class="faq-icon">+</span>
 					</div>
 					<div class="faq-answer">
-						<p>For any questions or clarifications, you may contact us through our Facebook accounts. Kindly allow 24–48 hours for a response. Thank you.</p>
+						<p>For any questions or clarifications, please feel free to reach out to us through our Facebook accounts. We will respond as soon as possible, and we kindly ask for up to 24 hours for a reply. Thank you so much.</p>
 					</div>
 				</div>
 			</div>

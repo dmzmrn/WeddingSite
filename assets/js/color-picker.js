@@ -83,6 +83,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Update title
 		colorRangeTitle.textContent = name;
 		
+		// Remove active class from all circles
+		colorCircles.forEach(c => c.classList.remove('active'));
+		
+		// Add active class to clicked circle
+		circleElement.classList.add('active');
+		
 		// Show popup
 		popup.classList.add('active');
 		
@@ -92,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}, 100);
 	}
 	
-	// Function to update color circle based on slider
+	// Function to update color from slider
 	function updateColorFromSlider(value) {
 		if (activeCircle && originalColor) {
 			const newColor = calculateShade(originalColor, value);
@@ -108,32 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 	
-	// Slider input event
-	colorSlider.addEventListener('input', function() {
-		updateColorFromSlider(this.value);
-	});
-	
-	// Add click event to color circles
-	colorCircles.forEach(circle => {
-		circle.addEventListener('click', function() {
-			const color = this.getAttribute('data-color');
-			const name = this.getAttribute('data-name');
-			
-			// Reset previous circle to original color
-			resetColorCircle();
-			
-			// Remove active class from all circles
-			colorCircles.forEach(c => c.classList.remove('active'));
-			
-			// Add active class to clicked circle
-			this.classList.add('active');
-			
-			// Show color range
-			showColorRange(color, name, this);
-		});
-	});
-	
-	// Close popup and reset
+	// Function to close popup
 	function closePopup() {
 		popup.classList.remove('active');
 		resetColorCircle();
@@ -141,6 +122,26 @@ document.addEventListener('DOMContentLoaded', function() {
 		activeCircle = null;
 		originalColor = null;
 	}
+	
+	// Slider input event
+	colorSlider.addEventListener('input', function() {
+		updateColorFromSlider(this.value);
+	});
+	
+	// Add click event to color circles
+	colorCircles.forEach(circle => {
+		circle.addEventListener('click', function(e) {
+			e.stopPropagation();
+			const color = this.getAttribute('data-color');
+			const name = this.getAttribute('data-name');
+			
+			// Reset previous circle to original color
+			resetColorCircle();
+			
+			// Show color range
+			showColorRange(color, name, this);
+		});
+	});
 	
 	// Close popup
 	if (colorRangeClose) {
@@ -152,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	// Close popup when clicking outside
 	document.addEventListener('click', function(e) {
-		if (!e.target.closest('.color-palette')) {
+		if (!e.target.closest('.color-palette') || e.target.closest('.dress-code-section.entourage-section')) {
 			closePopup();
 		}
 	});

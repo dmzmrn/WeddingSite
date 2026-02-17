@@ -2275,3 +2275,211 @@ body.is-preload #footer {
 .typing-text.done .typing-cursor {
 	animation: blink 1.5s infinite;
 }
+
+/* Color Circle Wrapper with Label */
+.color-circle-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.color-name {
+	font-size: 0.75rem;
+	color: #666666;
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	font-weight: 600;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+	.color-name {
+		font-size: 0.65rem;
+		letter-spacing: 0.05rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.color-name {
+		font-size: 0.6rem;
+	}
+}
+
+/* Color Palette Info Text */
+.palette-info {
+	font-size: 0.95rem;
+	color: #333333;
+	margin-bottom: 0.5rem;
+	text-align: center;
+	line-height: 1.6;
+}
+
+.palette-instruction {
+	font-size: 0.8rem;
+	color: #888888;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.palette-instruction i {
+	color: #9b8aa5;
+	margin-right: 0.3rem;
+	animation: point 1.5s ease-in-out infinite;
+}
+
+@keyframes point {
+	0%, 100% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(5px);
+	}
+}
+
+/* Dress Code Sections */
+.dress-code-section {
+	margin-bottom: 2.5rem;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid rgba(155, 138, 165, 0.3);
+}
+
+.dress-code-section:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+.dress-code-section h4 {
+	font-size: 1rem;
+	color: #333333;
+	margin-bottom: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 0.15rem;
+}
+
+.dress-code-section h4 i {
+	color: #9b8aa5;
+	margin-right: 0.5rem;
+}
+
+/* Entourage Section */
+.entourage-section {
+	background: rgba(155, 138, 165, 0.08);
+	padding: 1.5rem;
+	border-radius: 12px;
+	border: 1px dashed rgba(155, 138, 165, 0.4);
+}
+
+.entourage-notice {
+	background: rgba(192, 57, 43, 0.1);
+	color: #c0392b;
+	padding: 0.75rem 1rem;
+	border-radius: 8px;
+	font-size: 0.9rem;
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+.entourage-notice i {
+	margin-right: 0.5rem;
+}
+
+.entourage-colors {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.entourage-role {
+  background: rgba(155, 138, 165, 0.1);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(155, 138, 165, 0.3);
+}
+
+.entourage-role h5 {
+	font-size: 0.85rem;
+	color: #333333;
+	margin-bottom: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	font-weight: 600;
+}
+
+/* ===== UPDATED COLOR DISPLAY (Responsive Grid) ===== */
+
+.entourage-color-display {
+	display: flex;
+	flex-direction: column;  /* always stacked */
+	gap: 1rem;            /* allows stacking when needed */
+}
+
+.color-item {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+/* Mobile / Tablet */
+@media (max-width: 768px) {
+	.entourage-color-display {
+		flex-direction: column;
+		align-items: flex-start;   /* stacked alignment */
+		gap: 1rem;
+	}
+}
+
+
+/* Color Circle */
+.entourage-color {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+	flex-shrink: 0;
+}
+
+.entourage-color-display span {
+	font-size: 0.95rem;
+	color: #333333;
+	font-weight: 600;
+}
+
+.entourage-color-display small {
+	display: block;
+	font-size: 0.75rem;
+	color: #888888;
+	font-family: 'Courier New', monospace;
+	font-weight: 400;
+	margin-top: 0.25rem;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+	.entourage-section {
+		padding: 1rem;
+	}
+
+	.entourage-color {
+		width: 40px;
+		height: 40px;
+	}
+	
+	.entourage-color-display {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+	.entourage-role {
+		padding: 0.75rem;
+	}
+	
+	.entourage-color {
+		width: 35px;
+		height: 35px;
+	}
+}
