@@ -565,6 +565,20 @@
 			</div>
 		</div>
 
+		<!-- Background Music Player -->
+		<div class="music-player" id="musicPlayer">
+			<audio id="bgMusic" loop preload="auto">
+				<source src="assets/audio/music.mp3" type="audio/mpeg">
+			</audio>
+			<div class="music-volume-container" id="volumeContainer">
+				<span class="music-volume-value" id="volumeValue">100%</span>
+				<input type="range" min="0" max="100" value="100" class="music-volume-slider" id="volumeSlider">
+			</div>
+			<button class="music-btn" id="musicBtn" title="Play Music">
+				<i class="fa-solid fa-volume-xmark" id="musicIcon"></i>
+			</button>
+		</div>
+
 		<!-- Footer -->
 		<footer id="footer">
 			<p class="copyright typing-text">
@@ -587,6 +601,7 @@
 	<script src="assets/js/color-picker.js"></script>
 	<script src="assets/js/typing-footer.js"></script>
 	<script src="assets/js/story-gallery.js"></script>
+	<script src="assets/js/music-player.js"></script>
 	<script>
 			document.getElementById('contactForm').addEventListener('submit', async function(e) {
 			e.preventDefault();
