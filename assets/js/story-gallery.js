@@ -18,12 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		const imagePaths = imageList.map(img => folder + img);
 		gallery.setAttribute('data-image-paths', JSON.stringify(imagePaths));
 		
-		// Create slides
+		// Create slides with lazy loading
 		imageList.forEach((img, index) => {
 			const slide = document.createElement('div');
 			slide.className = 'gallery-slide';
 			slide.setAttribute('data-index', index);
-			slide.innerHTML = `<img src="${folder}${img}" alt="" loading="lazy">`;
+			slide.innerHTML = `
+				<div class="gallery-slide-loader"></div>
+				<img src="${folder}${img}" alt="" loading="lazy" onload="this.parentElement.classList.add('loaded')">
+			`;
 			track.appendChild(slide);
 		});
 		
@@ -66,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					<i class="fa-solid fa-chevron-left"></i>
 				</button>
 				<div class="gallery-preview-image-container">
-					<img src="${images[currentIndex]}" alt="">
+					<div class="gallery-preview-loader"></div>
+					<img src="${images[currentIndex]}" alt="" onload="this.parentElement.classList.add('loaded')">
 					<div class="gallery-preview-counter">${currentIndex + 1} / ${images.length}</div>
 				</div>
 				<button class="gallery-preview-nav gallery-preview-next">
@@ -77,7 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.body.appendChild(overlay);
 		document.body.style.overflow = 'hidden';
 		
-		const imgElement = overlay.querySelector('.gallery-preview-image-container img');
+		const imgContainer = overlay.querySelector('.gallery-preview-image-container');
+		const imgElement = imgContainer.querySelector('img');
 		const counter = overlay.querySelector('.gallery-preview-counter');
 		const prevBtn = overlay.querySelector('.gallery-preview-prev');
 		const nextBtn = overlay.querySelector('.gallery-preview-next');
@@ -85,13 +90,19 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		// Update image function
 		function updateImage() {
+			imgContainer.classList.remove('loaded');
 			imgElement.style.opacity = '0';
 			setTimeout(() => {
 				imgElement.src = images[currentIndex];
 				counter.textContent = `${currentIndex + 1} / ${images.length}`;
-				imgElement.style.opacity = '1';
 			}, 150);
 		}
+		
+		// Image loaded
+		imgElement.onload = function() {
+			imgContainer.classList.add('loaded');
+			imgElement.style.opacity = '1';
+		};
 		
 		// Previous image
 		prevBtn.addEventListener('click', function(e) {
@@ -128,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 		
 		// Prevent clicks on image container from closing
-		overlay.querySelector('.gallery-preview-image-container').addEventListener('click', function(e) {
+		imgContainer.addEventListener('click', function(e) {
 			e.stopPropagation();
 		});
 		
@@ -168,10 +179,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			
 			if (Math.abs(diff) > swipeThreshold) {
 				if (diff > 0) {
-					// Swipe left - next image
 					currentIndex = (currentIndex + 1) % images.length;
 				} else {
-					// Swipe right - previous image
 					currentIndex = (currentIndex - 1 + images.length) % images.length;
 				}
 				updateImage();
