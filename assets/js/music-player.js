@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Function to update volume slider background (vertical)
 	function updateSliderBackground(value) {
 		const percentage = value;
-		volumeSlider.style.background = `linear-gradient(to top, #9b8aa5 ${percentage}%, #e0e0e0 ${percentage}%)`;
+		// Note: "to right" because slider is rotated -90deg, so it appears as "to top"
+		volumeSlider.style.background = `linear-gradient(to right, #b8d4e8 ${percentage}%, rgba(255, 255, 255, 0.3) ${percentage}%)`;
 	}
 	
 	// Initialize slider background at 100%
