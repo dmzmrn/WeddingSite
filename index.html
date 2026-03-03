@@ -763,6 +763,12 @@
 			.join(' ');
 	}
 
+	function getPhilippineDateTime() {
+		return new Date().toLocaleString('sv-SE', { 
+			timeZone: 'Asia/Manila'
+		}).replace('T', ' ');
+	}
+
 	function showEticketWithID(firstname, surname, ticketID) {
 		const guestName = `${toProperCase(firstname)} ${toProperCase(surname)}`;
 		
@@ -856,7 +862,7 @@
 			data: {
 				'Attendance': attendance,
 				'TicketID': ticketID,
-				'Date': new Date().toISOString().slice(0, 19).replace('T', ' ')
+				'Date': getPhilippineDateTime()
 			}
 		};
 
@@ -931,7 +937,7 @@
 						'Firstname': toProperCase(firstname),
 						'Attendance': attendance,
 						'TicketID': ticketID,
-						'Date': new Date().toISOString().slice(0, 19).replace('T', ' ')
+						'Date': getPhilippineDateTime()
 					}
 				};
 			
