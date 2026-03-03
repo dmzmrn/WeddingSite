@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	// Multiple messages to cycle through
     const messages = [
-    "Dominic & Karla",
-    "Wedding • April 2025",
+    "Dominic & Karla Marie",
+    "Wedding • April 18, 2026",
     "Celebrating love with family and friends",
     "We look forward to celebrating with you"
     ];

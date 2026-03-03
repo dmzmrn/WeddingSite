@@ -4,7 +4,9 @@
 	<title>Dominic & Karla - Wedding 04.18.2026</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="assets/css/epass.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	
 </head>
@@ -156,7 +158,7 @@
 				<div class="dress-code-section">
 					<h4><i class="fa-solid fa-users"></i> For Our Guests</h4>
 					<p>We kindly request <strong>semi-formal</strong> attire.<br>
-					<em>Please avoid wearing white.</em></p>
+					<p class="entourage-notice"><i class="fa-solid fa-circle-exclamation"></i><em><strong>Please avoid wearing white.</strong></em></p>
 					
 					<div class="color-palette">
 						<p class="palette-info">Feel free to wear any of the colors below or their lighter shades.</p>
@@ -227,7 +229,7 @@
 
 								<div class="color-item">
 									<div class="entourage-color" style="background-color: #000000;"></div>
-									<span>Black <small>Coat w/ Mocha Tie</small></span>
+									<span>Black <small>Suit Coat w/ Mocha Tie</small></span>
 								</div>
 							</div>
 						</div>		
@@ -243,7 +245,7 @@
 								</div>
 								<div class="color-item">
 									<div class="entourage-color" style="background-color: #000000;"></div>
-									<span>Black <small>Coat w/ Dusty Blue Tie</small></span>
+									<span>Black <small>Suit Coat w/ Dusty Blue Tie</small></span>
 								</div>
 								
 							</div>
@@ -256,7 +258,7 @@
 
 								<div class="color-item">
 									<div class="entourage-color" style="background-color: #a19c9c;"></div>
-									<span>Grey <small>Coat w/ Lilac Tie</small></span>
+									<span>Grey <small>Suit Coat w/ Lilac Tie</small></span>
 								</div>
 
 							</div>
@@ -515,7 +517,69 @@
 					</ul>
 					<div id="form-message" style="margin-top: 1em; text-align: center; display: none;"></div>
 				</form>
+				<span class="close"></span>
 			</article>
+			<!-- E-Ticket Modal -->
+			<div class="eticket-modal" id="eticketModal">
+				<div class="eticket-modal-content">
+					<span class="eticket-close" id="eticketClose">&times;</span>
+					<h3><i class="fa-solid fa-ticket"></i> Your Wedding E-Ticket</h3>
+					<p class="eticket-success-msg">Thank you for your RSVP! Here's your wedding reception pass.</p>
+					
+					<div class="eticket-card" id="eticketCard">
+						<div class="eticket-header">
+							<div class="eticket-couple-names">Dominic & Karla</div>
+							<div class="eticket-event-type">Wedding Reception Pass</div>
+						</div>
+						<div class="eticket-body">
+							<div class="eticket-guest-info">
+								<div class="eticket-label">Guest Name</div>
+								<div class="eticket-value" id="ticketGuestName">-</div>
+							</div>
+							<div class="eticket-details-row">
+								<div class="eticket-detail">
+									<div class="eticket-label">Date</div>
+									<div class="eticket-value">April 18, 2026</div>
+								</div>
+								<div class="eticket-detail">
+									<div class="eticket-label">Time</div>
+									<div class="eticket-value">11:00 AM</div>
+								</div>
+							</div>
+							<div class="eticket-details-row">
+								<div class="eticket-detail">
+									<div class="eticket-label">Venue</div>
+									<div class="eticket-value">Kairos Events Venue</div>
+								</div>
+								<div class="eticket-detail">
+									<div class="eticket-label">Status</div>
+									<div class="eticket-value" id="ticketStatus">✓ Confirmed</div>
+								</div>
+							</div>
+						</div>
+						<div class="eticket-footer">
+							<div class="eticket-qr" id="ticketQR"></div>
+							<div class="eticket-id">
+								<div class="eticket-label">Ticket ID</div>
+								<div class="eticket-value" id="ticketID">-</div>
+							</div>
+						</div>
+						<div class="eticket-note">
+							<i class="fa-solid fa-circle-info"></i> Please present this e-ticket at the reception entrance.
+						</div>
+					</div>
+					
+					<div class="eticket-download-buttons">
+						<button class="eticket-download-btn" id="downloadJPG">
+							<i class="fa-solid fa-image"></i> Download JPG
+						</button>
+						<button class="eticket-download-btn" id="downloadPDF">
+							<i class="fa-solid fa-file-pdf"></i> Download PDF
+						</button>
+					</div>
+
+				</div>
+			</div>
 
 			<!-- gallery -->
 			<article id="gallery">
@@ -594,6 +658,9 @@
 	<div id="bg"></div>
 
 	<!-- Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/browser.min.js"></script>
 	<script src="assets/js/breakpoints.min.js"></script>
@@ -605,193 +672,483 @@
 	<script src="assets/js/story-gallery.js"></script>
 	<script src="assets/js/music-player.js"></script>
 	<script>
-			document.getElementById('contactForm').addEventListener('submit', async function(e) {
-			e.preventDefault();
-
-			const submitBtn = this.querySelector('input[type="submit"]');
-			const messageDiv = document.getElementById('form-message');
-
-			// Check if already submitting
-			if (submitBtn.disabled) {
-				return;
+	// ============================================
+	// E-TICKET FUNCTIONS
+	// ============================================
+	
+	function generateTicketID() {
+		const now = Date.now();
+		const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+		
+		// Convert timestamp to base36 for shorter string
+		const encoded = now.toString(36).toUpperCase();
+		
+		return `DK-${encoded}${random}`;
+	}
+	
+	function assignTableNumber(guestName) {
+		let hash = 0;
+		for (let i = 0; i < guestName.length; i++) {
+			hash = guestName.charCodeAt(i) + ((hash << 5) - hash);
+		}
+		return Math.abs(hash % 10) + 1;
+	}
+	
+	function generateQRCode(guestName, ticketID) {
+		const qrContainer = document.getElementById('ticketQR');
+		if (!qrContainer) return;
+		qrContainer.innerHTML = '';
+		
+		const qrText = `${guestName}\nConfirmed Guest - Thank you for celebrating with us!\nTicket ID: ${ticketID}`;
+		
+		// Use QRServer API with larger size for better scanning
+		const encodedText = encodeURIComponent(qrText);
+		const qrImage = document.createElement('img');
+		
+		// Generate larger QR (300x300) then scale down with CSS
+		qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodedText}&margin=10`;
+		qrImage.alt = 'QR Code';
+		qrImage.style.width = '100%';
+		qrImage.style.height = '100%';
+		qrImage.style.objectFit = 'contain';
+		
+		// Handle loading error - try backup API
+		qrImage.onerror = function() {
+			console.log('Primary QR API failed, trying backup...');
+			
+			// Backup: QRCode.js library
+			if (typeof QRCode !== 'undefined') {
+				qrContainer.innerHTML = '';
+				new QRCode(qrContainer, {
+					text: qrText,
+					width: 200,
+					height: 200,
+					colorDark: '#000000',
+					colorLight: '#ffffff',
+					correctLevel: QRCode.CorrectLevel.L
+				});
+				
+				// Resize after creation
+				setTimeout(function() {
+					const canvas = qrContainer.querySelector('canvas');
+					const img = qrContainer.querySelector('img');
+					if (canvas) {
+						canvas.style.width = '100%';
+						canvas.style.height = '100%';
+					}
+					if (img) {
+						img.style.width = '100%';
+						img.style.height = '100%';
+					}
+				}, 100);
+			} else {
+				// Final fallback: different API
+				qrImage.src = `https://quickchart.io/qr?text=${encodedText}&size=300&margin=2`;
 			}
+		};
+		
+		// Handle successful load
+		qrImage.onload = function() {
+			console.log('QR Code generated successfully');
+		};
+		
+		qrContainer.appendChild(qrImage);
+	}
 
-			// Get field values (lowercase and trimmed)
-			const surname = document.getElementById('surname').value.toLowerCase().trim();
-			const firstname = document.getElementById('firstname').value.toLowerCase().trim();
-			const attendanceElement = document.querySelector('input[name="attendance"]:checked');
+	function toProperCase(str) {
+		return str
+			.toLowerCase()
+			.split(' ')
+			.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(' ');
+	}
 
-			// Validate
-			if (!surname || !firstname || !attendanceElement) {
-				showMessage('Please fill in all required fields.', 'error');
-				return;
+	function showEticketWithID(firstname, surname, ticketID) {
+		const guestName = `${toProperCase(firstname)} ${toProperCase(surname)}`;
+		
+		document.getElementById('ticketGuestName').textContent = guestName;
+		document.getElementById('ticketStatus').textContent = '✓ Confirmed';
+		document.getElementById('ticketID').textContent = ticketID;
+		
+		generateQRCode(guestName, ticketID);
+		
+		document.getElementById('eticketModal').classList.add('active');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeEticket() {
+		const eticketModal = document.getElementById('eticketModal');
+		if (eticketModal) {
+			eticketModal.classList.remove('active');
+			document.body.style.overflow = '';
+		}
+	}
+	
+	// ============================================
+	// RSVP FORM SUBMISSION WITH SHEETDB
+	// ============================================
+	
+	const TEST_MODE = false;
+
+	document.getElementById('contactForm').addEventListener('submit', async function(e) {
+		e.preventDefault();
+
+		const submitBtn = this.querySelector('input[type="submit"]');
+		const messageDiv = document.getElementById('form-message');
+
+		if (submitBtn.disabled) {
+			return;
+		}
+
+		const surname = document.getElementById('surname').value.toLowerCase().trim();
+		const firstname = document.getElementById('firstname').value.toLowerCase().trim();
+		const attendanceElement = document.querySelector('input[name="attendance"]:checked');
+
+		if (!surname || !firstname || !attendanceElement) {
+			showMessage('Please fill in all required fields.', 'error');
+			return;
+		}
+
+		const attendance = attendanceElement.value;
+
+		// Generate ticket ID for all submissions
+		const ticketID = generateTicketID();
+		// ============================================
+		//  TEST MODE - BYPASS SHEETDB
+		// ============================================
+		if (TEST_MODE) {
+			console.log('⚠️ TEST MODE: Bypassing SheetDB');
+			console.log('Name:', firstname, surname);
+			console.log('Attendance:', attendance);
+			
+			if (attendance === 'Yes') {
+				showEticketWithID(firstname, surname, ticketID);
+				showMessage('TEST MODE: E-ticket generated!', 'success');
+			} else if (attendance === 'Maybe') {
+				showMessage('TEST MODE: Maybe response recorded.', 'success');
+			} else {
+				showMessage('TEST MODE: No response recorded.', 'success');
 			}
+			
+			document.getElementById('contactForm').reset();
+			return; // Skip SheetDB call
+		}
+		// ============================================
+		// END TEST MODE
+		// ============================================
 
-			const attendance = attendanceElement.value;
+		const originalText = submitBtn.value;
+		submitBtn.disabled = true;
+		submitBtn.value = 'Submitting...';
+		showMessage('Submitting your RSVP...', 'info');
 
-			// Show loading state
-			const originalText = submitBtn.value;
-			submitBtn.disabled = true;
-			submitBtn.value = 'Submitting...';
-			showMessage('Submitting your RSVP...', 'info');
+		// Main guest list SheetDB
+		const sheetDBBaseURL = 'https://sheetdb.io/api/v1/y1tkdjo83b104';
+		
+		// SheetDB for unknown guests
+		const unknownGuestSheetDB = 'https://sheetdb.io/api/v1/qomxxfhll5ofw';
 
-			// SheetDB config
-			const sheetDBBaseURL = 'https://sheetdb.io/api/v1/y1tkdjo83b104';
+		const base = (4180 * 1000) + (20 * 100) + (13 * 2);
+		const generatedId = base + surname + firstname;
+		const patchURL = sheetDBBaseURL + '/id/' + encodeURIComponent(generatedId);
 
-			// Generate ID to match sheet record
-			const base = (4180 * 1000) + (20 * 100) + (13 * 2);
-			const generatedId = base + surname;
+		const payload = {
+			data: {
+				'Attendance': attendance,
+				'TicketID': ticketID,
+				'Date': new Date().toISOString().slice(0, 19).replace('T', ' ')
+			}
+		};
 
-			const patchURL = sheetDBBaseURL + '/id/' + encodeURIComponent(generatedId);
+		console.log('Sending to SheetDB:', payload);
 
-			// PATCH payload - only update Attendance and Date
-			const payload = {
-				data: {
-					'Attendance': attendance,
-					'Date': new Date().toISOString().slice(0, 19).replace('T', ' ')
+		try {
+			const response = await fetch(patchURL, {
+				method: 'PATCH',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(payload)
+			});
+
+			if (response.ok) {
+				const result = await response.json();
+				console.log('SheetDB response:', result);
+				
+				if (attendance === 'Yes') {
+					showEticketWithID(firstname, surname, ticketID);
+					showMessage('Thank you for your RSVP! Your e-ticket is ready.', 'success');
+				} else if (attendance === 'Maybe') {
+					showMessage('Thank you! We hope to see you there. Please confirm when you can.', 'success');
+				} else {
+					showMessage('We\'re sorry you can\'t make it. Thank you for letting us know!', 'success');
 				}
+				
+				document.getElementById('contactForm').reset();
+				
+			} else if (response.status === 404) {
+				// Guest not found - save to separate sheet
+				console.log('Guest not on list, saving to request sheet...');
+				
+				await saveUnknownGuest(unknownGuestSheetDB, firstname, surname, attendance, ticketID, generatedId);
+				showEticketWithID(firstname, surname, ticketID);
+				showMessage('Thank you for your interest! We have received your request and will get back to you soon.', 'success');
+				document.getElementById('contactForm').reset();
+				
+			} else {
+				throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+			}
+		} catch (error) {
+			console.error('RSVP submission error:', error);
+			showMessage('There was an error submitting your RSVP. Please try again or contact us directly.', 'error');
+		} finally {
+			submitBtn.disabled = false;
+			submitBtn.value = originalText;
+		}
+		
+		function showMessage(text, type) {
+			const colors = {
+				error: '#e74c3c',
+				success: '#27ae60',
+				info: '#3498db'
 			};
-
-			console.log('Sending to SheetDB:', payload);
-
+			messageDiv.textContent = text;
+			messageDiv.style.display = 'block';
+			messageDiv.style.color = colors[type] || '#333';
+			messageDiv.style.fontWeight = '500';
+		}
+	});
+	
+		async function saveUnknownGuest(sheetURL, firstname, surname, attendance, ticketID, generatedId) {
+			// Generate unique ID for this record
+			const id = Date.now().toString();
+			
+			const payload = {
+					data: {
+						'id': generatedId,
+						'Surname': toProperCase(surname),
+						'Firstname': toProperCase(firstname),
+						'Attendance': attendance,
+						'TicketID': ticketID,
+						'Date': new Date().toISOString().slice(0, 19).replace('T', ' ')
+					}
+				};
+			
 			try {
-				const response = await fetch(patchURL, {
-					method: 'PATCH',
+				const response = await fetch(sheetURL, {
+					method: 'POST',
 					headers: {
 						'Accept': 'application/json',
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify(payload)
 				});
-
+				
 				if (response.ok) {
-					const result = await response.json();
-					console.log('SheetDB response:', result);
-					showMessage('Thank you for your RSVP! We look forward to celebrating with you.', 'success');
-					document.getElementById('contactForm').reset();
-				} else if (response.status === 404) {
-					showMessage('We could not find your name on our guest list. Please contact us directly if you believe this is an error.', 'error');
+					console.log('Unknown guest saved successfully');
 				} else {
-					throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+					console.error('Failed to save unknown guest');
 				}
 			} catch (error) {
-				console.error('RSVP submission error:', error);
-				showMessage('There was an error submitting your RSVP. Please try again or contact us directly.', 'error');
-			} finally {
-				submitBtn.disabled = false;
-				submitBtn.value = originalText;
+				console.error('Error saving unknown guest:', error);
 			}
+		}
 
-			function showMessage(text, type) {
-				const colors = {
-					error: '#e74c3c',
-					success: '#27ae60',
-					info: '#3498db'
-				};
-				messageDiv.textContent = text;
-				messageDiv.style.display = 'block';
-				messageDiv.style.color = colors[type] || '#333';
-				messageDiv.style.fontWeight = '500';
-			}
-		});
+	// ============================================
+	// E-TICKET MODAL CONTROLS (on DOM ready)
+	// ============================================
 
-		// FAQ Accordion Functionality
-		document.addEventListener('DOMContentLoaded', function() {
-			const faqItems = document.querySelectorAll('.faq-item');
-			
-			faqItems.forEach(item => {
-				const question = item.querySelector('.faq-question');
-				
-				question.addEventListener('click', function() {
-					const isActive = item.classList.contains('active');
-					
-					// Close all other FAQ items
-					faqItems.forEach(otherItem => {
-						if (otherItem !== item) {
-							otherItem.classList.remove('active');
-							otherItem.querySelector('.faq-answer').classList.remove('active');
-						}
-					});
-					
-					// Toggle current item
-					if (isActive) {
-						item.classList.remove('active');
-						item.querySelector('.faq-answer').classList.remove('active');
-					} else {
-						item.classList.add('active');
-						item.querySelector('.faq-answer').classList.add('active');
-					}
-				});
+	document.addEventListener('DOMContentLoaded', function() {
+		const eticketModal = document.getElementById('eticketModal');
+		const eticketClose = document.getElementById('eticketClose');
+		const modalContent = document.querySelector('.eticket-modal-content');
+		
+		// Close button
+		if (eticketClose) {
+			eticketClose.addEventListener('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				closeEticket();
 			});
-		});
-
-		// Gallery Lightbox Functionality
-		let currentImageIndex = 0;
-		let galleryImages = [];
-
-		function openLightbox(img) {
-			// Get all gallery images
-			galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
-			currentImageIndex = galleryImages.indexOf(img);
-			
-			const lightbox = document.getElementById('lightbox');
-			const lightboxImg = document.getElementById('lightbox-img');
-			
-			lightboxImg.src = img.src;
-			lightboxImg.alt = img.alt;
-			lightbox.classList.add('active');
-			
-			// Prevent body scrolling
-			document.body.style.overflow = 'hidden';
 		}
-
-		function closeLightbox() {
-			const lightbox = document.getElementById('lightbox');
-			lightbox.classList.remove('active');
-			
-			// Restore body scrolling
-			document.body.style.overflow = 'auto';
+		
+		// Close on background click
+		if (eticketModal) {
+			eticketModal.addEventListener('click', function(e) {
+				if (e.target === eticketModal) {
+					closeEticket();
+				}
+			});
 		}
-
-		function changeImage(direction) {
-			currentImageIndex += direction;
-			
-			// Loop around if at the beginning or end
-			if (currentImageIndex >= galleryImages.length) {
-				currentImageIndex = 0;
-			} else if (currentImageIndex < 0) {
-				currentImageIndex = galleryImages.length - 1;
-			}
-			
-			const lightboxImg = document.getElementById('lightbox-img');
-			const currentImg = galleryImages[currentImageIndex];
-			
-			lightboxImg.src = currentImg.src;
-			lightboxImg.alt = currentImg.alt;
+		
+		// Prevent content clicks from closing
+		if (modalContent) {
+			modalContent.addEventListener('click', function(e) {
+				e.stopPropagation();
+			});
 		}
-
-		// Close lightbox with ESC key
+		
+		// Close on Escape key
 		document.addEventListener('keydown', function(e) {
 			if (e.key === 'Escape') {
-				closeLightbox();
-			} else if (e.key === 'ArrowLeft') {
-				if (document.getElementById('lightbox').classList.contains('active')) {
-					changeImage(-1);
-				}
-			} else if (e.key === 'ArrowRight') {
-				if (document.getElementById('lightbox').classList.contains('active')) {
-					changeImage(1);
+				if (eticketModal && eticketModal.classList.contains('active')) {
+					closeEticket();
 				}
 			}
 		});
+		
+		// Download JPG
+		const downloadJPG = document.getElementById('downloadJPG');
+		if (downloadJPG) {
+			downloadJPG.addEventListener('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				
+				const eticketCard = document.getElementById('eticketCard');
+				
+				if (typeof html2canvas !== 'undefined') {
+					html2canvas(eticketCard, {
+						scale: 2,
+						backgroundColor: '#ffffff',
+						useCORS: true
+					}).then(canvas => {
+						const link = document.createElement('a');
+						link.download = `wedding-eticket-${document.getElementById('ticketID').textContent}.jpg`;
+						link.href = canvas.toDataURL('image/jpeg', 0.95);
+						link.click();
+					});
+				}
+			});
+		}
+		
+		// Download PDF
+		const downloadPDF = document.getElementById('downloadPDF');
+		if (downloadPDF) {
+			downloadPDF.addEventListener('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				
+				const eticketCard = document.getElementById('eticketCard');
+				
+				if (typeof html2canvas !== 'undefined' && typeof jspdf !== 'undefined') {
+					html2canvas(eticketCard, {
+						scale: 2,
+						backgroundColor: '#ffffff',
+						useCORS: true
+					}).then(canvas => {
+						const { jsPDF } = jspdf;
+						const pdf = new jsPDF('p', 'mm', 'a4');
+						
+						const imgData = canvas.toDataURL('image/jpeg', 0.95);
+						const imgWidth = 150;
+						const imgHeight = (canvas.height * imgWidth) / canvas.width;
+						const x = (210 - imgWidth) / 2;
+						const y = 30;
+						
+						pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
+						pdf.save(`wedding-eticket-${document.getElementById('ticketID').textContent}.pdf`);
+					});
+				}
+			});
+		}
+	});
 
-		// Close lightbox when clicking on the background
-		document.getElementById('lightbox').addEventListener('click', function(e) {
-			if (e.target === this) {
-				closeLightbox();
-			}
+	// ============================================
+	// FAQ ACCORDION
+	// ============================================
+	
+	document.addEventListener('DOMContentLoaded', function() {
+		const faqItems = document.querySelectorAll('.faq-item');
+		
+		faqItems.forEach(item => {
+			const question = item.querySelector('.faq-question');
+			
+			question.addEventListener('click', function() {
+				const isActive = item.classList.contains('active');
+				
+				faqItems.forEach(otherItem => {
+					if (otherItem !== item) {
+						otherItem.classList.remove('active');
+						otherItem.querySelector('.faq-answer').classList.remove('active');
+					}
+				});
+				
+				if (isActive) {
+					item.classList.remove('active');
+					item.querySelector('.faq-answer').classList.remove('active');
+				} else {
+					item.classList.add('active');
+					item.querySelector('.faq-answer').classList.add('active');
+				}
+			});
 		});
-	</script>
+	});
+
+	// ============================================
+	// GALLERY LIGHTBOX
+	// ============================================
+	
+	let currentImageIndex = 0;
+	let galleryImages = [];
+
+	function openLightbox(img) {
+		galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
+		currentImageIndex = galleryImages.indexOf(img);
+		
+		const lightbox = document.getElementById('lightbox');
+		const lightboxImg = document.getElementById('lightbox-img');
+		
+		lightboxImg.src = img.src;
+		lightboxImg.alt = img.alt;
+		lightbox.classList.add('active');
+		
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeLightbox() {
+		const lightbox = document.getElementById('lightbox');
+		lightbox.classList.remove('active');
+		document.body.style.overflow = 'auto';
+	}
+
+	function changeImage(direction) {
+		currentImageIndex += direction;
+		
+		if (currentImageIndex >= galleryImages.length) {
+			currentImageIndex = 0;
+		} else if (currentImageIndex < 0) {
+			currentImageIndex = galleryImages.length - 1;
+		}
+		
+		const lightboxImg = document.getElementById('lightbox-img');
+		const currentImg = galleryImages[currentImageIndex];
+		
+		lightboxImg.src = currentImg.src;
+		lightboxImg.alt = currentImg.alt;
+	}
+
+	document.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape') {
+			closeLightbox();
+			closeEticket();
+		} else if (e.key === 'ArrowLeft') {
+			if (document.getElementById('lightbox').classList.contains('active')) {
+				changeImage(-1);
+			}
+		} else if (e.key === 'ArrowRight') {
+			if (document.getElementById('lightbox').classList.contains('active')) {
+				changeImage(1);
+			}
+		}
+	});
+
+	document.getElementById('lightbox').addEventListener('click', function(e) {
+		if (e.target === this) {
+			closeLightbox();
+		}
+	});
+</script>
 </body>
 </html>
 
