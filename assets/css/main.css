@@ -1352,6 +1352,11 @@ body.is-preload #footer {
   transition: max-height 0.3s ease, padding 0.3s ease;
   color: #444444;
 }
+
+.faq-answer p {
+    text-align: justify;
+}
+
 .faq-answer.active {
   max-height: 500px;
   padding-top: 1rem;
