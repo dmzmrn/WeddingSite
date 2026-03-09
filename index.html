@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
 	<title>Dominic & Karla - Wedding 04.18.2026</title>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="assets/css/epass.css" />
@@ -644,15 +644,17 @@
 		<div class="music-player" id="musicPlayer">
 			<audio id="bgMusic" loop preload="auto">
 				<source src="assets/audio/music.mp3" type="audio/mpeg">
+				Your browser does not support the audio element.
 			</audio>
 			<div class="music-volume-container" id="volumeContainer">
 				<span class="music-volume-value" id="volumeValue">100%</span>
 				<div class="music-volume-slider-wrapper">
-					<input type="range" min="0" max="100" value="100" class="music-volume-slider" id="volumeSlider">
+					<label for="volumeSlider" class="sr-only">Volume Control</label>
+					<input type="range" min="0" max="100" value="100" class="music-volume-slider" id="volumeSlider" aria-label="Volume Control">
 				</div>
 			</div>
-			<button class="music-btn" id="musicBtn" title="Play Music">
-				<i class="fa-solid fa-volume-xmark" id="musicIcon"></i>
+			<button class="music-btn" id="musicBtn" title="Play Music" aria-label="Play background music">
+				<i class="fa-solid fa-volume-xmark" id="musicIcon" aria-hidden="true"></i>
 			</button>
 		</div>
 
