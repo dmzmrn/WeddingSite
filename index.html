@@ -507,7 +507,7 @@
 		</article>
 
 			<!-- rsvp -->
-			<article id="rsvp">
+			<!--<article id="rsvp">
 				<h2 class="major">RSVP</h2>
 				<form id="contactForm" method="post">
 					<div class="fields">
@@ -541,6 +541,49 @@
 					</ul>
 					<div id="form-message" style="margin-top: 1em; text-align: center; display: none;"></div>
 				</form>
+				<span class="close"></span>
+			</article> -->
+			<article id="rsvp">
+				<h2 class="major">RSVP</h2>
+				
+				<div class="rsvp-closed">
+					<div class="rsvp-closed-icon">
+						<i class="fa-solid fa-calendar-check"></i>
+					</div>
+					
+					<h3 class="rsvp-closed-title">RSVP is Now Closed</h3>
+					
+					<p class="rsvp-closed-message">
+						Thank you for your responses! We can't wait to celebrate with you.
+					</p>
+					
+					<!-- Countdown Timer -->
+					<div class="wedding-countdown" id="weddingCountdown">
+						<div class="countdown-item">
+							<span class="countdown-number" id="countDays">00</span>
+							<span class="countdown-label">Days</span>
+						</div>
+						<div class="countdown-item">
+							<span class="countdown-number" id="countHours">00</span>
+							<span class="countdown-label">Hours</span>
+						</div>
+						<div class="countdown-item">
+							<span class="countdown-number" id="countMinutes">00</span>
+							<span class="countdown-label">Minutes</span>
+						</div>
+						<div class="countdown-item">
+							<span class="countdown-number" id="countSeconds">00</span>
+							<span class="countdown-label">Seconds</span>
+						</div>
+					</div>
+					
+					<p class="countdown-until">until we say "I do"</p>
+					
+					<div class="rsvp-closed-contact">
+						<i class="fa-solid fa-envelope"></i> Questions or clarifications? Message us directly
+					</div>
+				</div>
+				
 				<span class="close"></span>
 			</article>
 			<!-- E-Ticket Modal -->
@@ -697,6 +740,7 @@
 	<script src="assets/js/typing-footer.js"></script>
 	<script src="assets/js/story-gallery.js"></script>
 	<script src="assets/js/music-player.js"></script>
+	<script src="assets/js/weddingtimer.js"></script>
 	<script>
 	// ============================================
 	// E-TICKET FUNCTIONS
