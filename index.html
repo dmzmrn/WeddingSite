@@ -45,7 +45,7 @@
 					<li><a href="#ourstory">Our Story</a></li>
 					<li><a href="#weddingdetails">Wedding Details</a></li>
 					<li><a href="#faq">FAQ</a></li>
-					<li><a href="#rsvp">RSVP</a></li>
+					<li><a href="#rsvpclose">RSVP</a></li>
 					<!--<li><a href="#gallery">Gallery</a></li>-->
 				</ul>
 			</nav>
@@ -507,7 +507,7 @@
 		</article>
 
 			<!-- rsvp -->
-			<!--<article id="rsvp">
+			<article id="rsvp">
 				<h2 class="major">RSVP</h2>
 				<form id="contactForm" method="post">
 					<div class="fields">
@@ -542,8 +542,9 @@
 					<div id="form-message" style="margin-top: 1em; text-align: center; display: none;"></div>
 				</form>
 				<span class="close"></span>
-			</article> -->
-			<article id="rsvp">
+			</article>
+
+			<article id="rsvpclose">
 				<h2 class="major">RSVP</h2>
 				
 				<div class="rsvp-closed">
@@ -620,7 +621,7 @@
 								</div>
 								<div class="eticket-detail">
 									<div class="eticket-label">Status</div>
-									<div class="eticket-value" id="ticketStatus">✓ Confirmed</div>
+									<div class="eticket-value" id="ticketStatus">✗ Rejected</div>
 								</div>
 							</div>
 						</div>
@@ -843,7 +844,7 @@
 		const guestName = `${toProperCase(firstname)} ${toProperCase(surname)}`;
 		
 		document.getElementById('ticketGuestName').textContent = guestName;
-		document.getElementById('ticketStatus').textContent = '✓ Confirmed';
+		document.getElementById('ticketStatus').textContent = '✗ Rejected';
 		document.getElementById('ticketID').textContent = ticketID;
 		
 		generateQRCode(guestName, ticketID);
@@ -864,7 +865,7 @@
 	// RSVP FORM SUBMISSION WITH SHEETDB
 	// ============================================
 	
-	const TEST_MODE = false;
+	const TEST_MODE = true;
 
 	document.getElementById('contactForm').addEventListener('submit', async function(e) {
 		e.preventDefault();
@@ -899,11 +900,11 @@
 			
 			if (attendance === 'Yes') {
 				showEticketWithID(firstname, surname, ticketID);
-				showMessage('TEST MODE: E-ticket generated!', 'success');
+				showMessage('Sorry RSVP Is Closed: No Response recorded!', 'success');
 			} else if (attendance === 'Maybe') {
-				showMessage('TEST MODE: Maybe response recorded.', 'success');
+				showMessage('Sorry RSVP Is Closed: No Response recorded.', 'success');
 			} else {
-				showMessage('TEST MODE: No response recorded.', 'success');
+				showMessage('Sorry RSVP Is Closed: No Response recorded.', 'success');
 			}
 			
 			document.getElementById('contactForm').reset();
