@@ -7,12 +7,32 @@
 	<link rel="canonical" href="https://ourweddingph.info/">
 	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
-	<!-- Preconnect to external origins for faster resource loading -->
+	<!-- Preconnect / DNS-prefetch for external origins -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+	<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 	<link rel="dns-prefetch" href="https://api.qrserver.com">
 	<link rel="dns-prefetch" href="https://sheetdb.io">
+	<link rel="dns-prefetch" href="https://picsum.photos">
+
+	<!-- Preload critical stylesheets so the browser fetches them ASAP -->
+	<link rel="preload" href="assets/css/main.css" as="style">
+	<link rel="preload" href="assets/css/epass.css" as="style">
+
+	<!--
+		Font Awesome 6.7.2 — loaded as <link> instead of @import inside main.css.
+		@import creates a serial request chain (browser must download main.css first,
+		then discover the @import, then start the FA download). A top-level <link>
+		lets both CSS files download in parallel.
+	-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+	<!--
+		Google Fonts — same reason as above.
+		CSS2 API + display=swap: text stays visible in a fallback font while the
+		web font loads instead of going invisible (FOIT → FOUT).
+	-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap">
 
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="assets/css/epass.css" />
@@ -731,31 +751,31 @@
 				
 				<div class="gallery-grid">
 					<div class="gallery-item">
-						<img src="images/pic01.jpg" alt="Dominic and Karla Marie engagement photo" loading="lazy" />
+						<img src="images/pic01.jpg" alt="Dominic and Karla Marie engagement photo" loading="lazy" width="960" height="320" />
 					</div>
 					<div class="gallery-item">
-						<img src="images/pic02.jpg" alt="Dominic and Karla Marie at the wedding venue" loading="lazy" />
+						<img src="images/pic02.jpg" alt="Dominic and Karla Marie at the wedding venue" loading="lazy" width="960" height="320" />
 					</div>
 					<div class="gallery-item">
-						<img src="images/pic03.jpg" alt="Dominic and Karla Marie celebration" loading="lazy" />
+						<img src="images/pic03.jpg" alt="Dominic and Karla Marie celebration" loading="lazy" width="960" height="320" />
 					</div>
 					<div class="gallery-item">
-						<img src="https://picsum.photos/400/300?random=1" alt="Wedding gallery photo 1" loading="lazy" />
+						<img src="https://picsum.photos/400/300?random=1" alt="Wedding gallery photo 1" loading="lazy" width="400" height="300" />
 					</div>
 					<div class="gallery-item">
-						<img src="https://picsum.photos/400/300?random=2" alt="Wedding gallery photo 2" loading="lazy" />
+						<img src="https://picsum.photos/400/300?random=2" alt="Wedding gallery photo 2" loading="lazy" width="400" height="300" />
 					</div>
 					<div class="gallery-item">
-						<img src="https://picsum.photos/400/300?random=3" alt="Wedding gallery photo 3" loading="lazy" />
+						<img src="https://picsum.photos/400/300?random=3" alt="Wedding gallery photo 3" loading="lazy" width="400" height="300" />
 					</div>
 					<div class="gallery-item">
-						<img src="https://picsum.photos/400/300?random=4" alt="Wedding gallery photo 4" loading="lazy" />
+						<img src="https://picsum.photos/400/300?random=4" alt="Wedding gallery photo 4" loading="lazy" width="400" height="300" />
 					</div>
 					<div class="gallery-item">
-						<img src="https://picsum.photos/400/300?random=5" alt="Wedding gallery photo 5" loading="lazy" />
+						<img src="https://picsum.photos/400/300?random=5" alt="Wedding gallery photo 5" loading="lazy" width="400" height="300" />
 					</div>
 					<div class="gallery-item">
-						<img src="https://picsum.photos/400/300?random=6" alt="Wedding gallery photo 6" loading="lazy" />
+						<img src="https://picsum.photos/400/300?random=6" alt="Wedding gallery photo 6" loading="lazy" width="400" height="300" />
 					</div>
 				</div>
 			</article>
@@ -802,24 +822,29 @@
 	<!-- BG -->
 	<div id="bg"></div>
 
-	<!-- Scripts -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="assets/js/timeline-animation.js"></script>
-	<script src="assets/js/color-picker.js"></script>
-	<script src="assets/js/typing-footer.js"></script>
-	<script src="assets/js/story-gallery.js"></script>
-	<script src="assets/js/music-player.js"></script>
-	<script src="assets/js/weddingtimer.js"></script>
-	<script src="assets/js/faq.js"></script>
-	<script src="assets/js/rsvp.js"></script>
-	<script src="assets/js/gallery.js"></script>
+	<!-- Scripts
+		All scripts use defer so they download in parallel with each other and
+		with the rest of the page, then execute in order after DOM parsing is
+		complete. Execution order is preserved by the spec, so jQuery is always
+		available before the scripts that depend on it.
+	-->
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+	<script defer src="assets/js/jquery.min.js"></script>
+	<script defer src="assets/js/browser.min.js"></script>
+	<script defer src="assets/js/breakpoints.min.js"></script>
+	<script defer src="assets/js/util.js"></script>
+	<script defer src="assets/js/main.js"></script>
+	<script defer src="assets/js/timeline-animation.js"></script>
+	<script defer src="assets/js/color-picker.js"></script>
+	<script defer src="assets/js/typing-footer.js"></script>
+	<script defer src="assets/js/story-gallery.js"></script>
+	<script defer src="assets/js/music-player.js"></script>
+	<script defer src="assets/js/weddingtimer.js"></script>
+	<script defer src="assets/js/faq.js"></script>
+	<script defer src="assets/js/rsvp.js"></script>
+	<script defer src="assets/js/gallery.js"></script>
 	
 </body>
 </html>

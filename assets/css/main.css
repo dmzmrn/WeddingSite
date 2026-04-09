@@ -1,5 +1,5 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css");
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
+/* Font Awesome and Google Fonts are now loaded as <link> tags in index.html
+   so browsers can fetch them in parallel with this file instead of serially. */
 
 /* CSS Reset */
 html,
