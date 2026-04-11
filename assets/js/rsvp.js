@@ -120,7 +120,7 @@ function closeEticket() {
 // RSVP FORM SUBMISSION WITH SHEETDB
 // ============================================
 
-const TEST_MODE = true;
+const TEST_MODE = false;
 
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
 	e.preventDefault();
