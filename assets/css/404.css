@@ -1,0 +1,158 @@
+/* 404 Error Page Styles */
+
+.error-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	text-align: center;
+	padding: 2rem;
+	background: #f5f0f7;
+}
+
+.error-icon {
+	font-size: 5rem;
+	color: #9b8aa5;
+	margin-bottom: 1.5rem;
+	animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+	0%, 100% { 
+		transform: translateY(0); 
+	}
+	50% { 
+		transform: translateY(-15px); 
+	}
+}
+
+.error-code {
+	font-size: 8rem;
+	font-weight: 600;
+	color: #333333;
+	line-height: 1;
+	margin: 0;
+	background: linear-gradient(135deg, #9b8aa5, #7a9bb5);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.error-title {
+	font-size: 1.5rem;
+	color: #333333;
+	margin: 1rem 0;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem;
+	font-family: "Source Sans Pro", sans-serif;
+	font-weight: 600;
+}
+
+.error-message {
+	font-size: 1rem;
+	color: #666666;
+	margin-bottom: 2rem;
+	max-width: 400px;
+	line-height: 1.6;
+	font-family: "Source Sans Pro", sans-serif;
+}
+
+.error-home-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 2rem;
+	background: linear-gradient(135deg, #9b8aa5, #7a9bb5);
+	color: #ffffff;
+	text-decoration: none;
+	border-radius: 30px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	font-family: "Source Sans Pro", sans-serif;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	box-shadow: 0 4px 15px rgba(155, 138, 165, 0.4);
+}
+
+.error-home-btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 6px 25px rgba(155, 138, 165, 0.6);
+}
+
+.error-hearts {
+	margin-top: 3rem;
+	color: #9b8aa5;
+	font-size: 1.5rem;
+	opacity: 0.5;
+}
+
+.error-hearts i {
+	margin: 0 0.5rem;
+	animation: pulse 1.5s ease-in-out infinite;
+}
+
+.error-hearts i:nth-child(2) {
+	animation-delay: 0.2s;
+}
+
+.error-hearts i:nth-child(3) {
+	animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+	0%, 100% { 
+		transform: scale(1); 
+	}
+	50% { 
+		transform: scale(1.2); 
+	}
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 736px) {
+	.error-code {
+		font-size: 5rem;
+	}
+	
+	.error-icon {
+		font-size: 3.5rem;
+	}
+	
+	.error-title {
+		font-size: 1.2rem;
+		letter-spacing: 0.15rem;
+	}
+	
+	.error-message {
+		font-size: 0.9rem;
+		padding: 0 1rem;
+	}
+	
+	.error-home-btn {
+		padding: 0.6rem 1.5rem;
+		font-size: 0.9rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.error-container {
+		padding: 1.5rem;
+	}
+	
+	.error-code {
+		font-size: 4rem;
+	}
+	
+	.error-icon {
+		font-size: 3rem;
+	}
+	
+	.error-title {
+		font-size: 1rem;
+	}
+	
+	.error-hearts {
+		font-size: 1.2rem;
+	}
+}

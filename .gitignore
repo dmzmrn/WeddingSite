@@ -1,36 +1,43 @@
-# Visual Studio
-.vs/
+# Claude Code
+settings.local.json
+.claude/
+CLAUDE.md
 
-# Build results
-bin/
-obj/
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
 
-# User-specific files
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+*~
 
-# NuGet packages
-*.nupkg
-packages/
-*.snupkg
+# Node
+node_modules/
+package-lock.json
+yarn.lock
 
 # Logs
 *.log
+npm-debug.log*
 
-# Temporary files
+# Environment/secrets
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+.cache/
+
+# Temp files
 *.tmp
-*.temp
-
-# Publish outputs
-publish/
-
-# Rider / JetBrains IDE
-.idea/
-
-# Backup and cache
 *.bak
-*.cache
-*.config
-
+*.orig
